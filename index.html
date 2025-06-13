@@ -1,0 +1,65 @@
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+    "pdfjs-dist/build/pdf.min.mjs": "https://esm.sh/pdfjs-dist@4.0.379/build/pdf.min.mjs",
+    "pdfjs-dist/legacy/build/pdf.worker.min.mjs": "https://esm.sh/pdfjs-dist@4.0.379/legacy/build/pdf.worker.min.mjs",
+    "pdfjs-dist/": "https://esm.sh/pdfjs-dist@^5.3.31/"
+  }
+}
+</script>
+  <!-- Add Google Fonts Link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <div class="container">
+    <h1>Flashcard Generator</h1>
+    <p>
+      Enter a topic to generate flashcards, or provide a TXT/PDF file for content. Specify the number of cards.
+      You can also import pre-formatted flashcards from a .txt file.
+    </p>
+    <textarea
+      id="topicInput"
+      placeholder="Enter topic (e.g., Photosynthesis) or leave blank if generating from file"
+      aria-label="Topic input for flashcard generation"
+    ></textarea>
+
+    <div class="generation-controls">
+        <label for="flashcardCount">Number of flashcards to generate:</label>
+        <input type="number" id="flashcardCount" value="10" min="1" max="50" aria-label="Number of flashcards to generate">
+    </div>
+
+    <div class="actions-toolbar">
+      <button id="generateButton">Generate from Topic</button>
+      <button id="generateFromFileButton" aria-label="Generate flashcards from a TXT or PDF file">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15.01l1.41 1.41L11 14.84V19h2v-4.16l1.59 1.59L16 15.01 12.01 11z"/></svg>
+        Generate from File
+      </button>
+      <button id="importButton" aria-label="Import flashcards from a formatted TXT file">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm3-10.17L14.17 8H13v6h-2V8H9.83zM5 18h14v2H5z"/></svg>
+        Import Cards (.txt)
+      </button>
+      <div class="download-controls">
+        <button id="downloadButton" aria-label="Download all flashcards as TXT">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor">
+            <path d="M0 0h24v24H0V0z" fill="none"/>
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          Download as .txt
+        </button>
+      </div>
+      <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;" aria-hidden="true" aria-label="File input for importing formatted flashcards">
+      <input type="file" id="generateFromFileInput" accept=".txt,.pdf" style="display: none;" aria-hidden="true" aria-label="File input for generating flashcards from content">
+    </div>
+    <div id="errorMessage" class="error-message" role="alert"></div>
+    <div id="announcer" class="visually-hidden" aria-live="assertive" aria-atomic="true"></div>
+    <div id="flashcardsContainer" class="flashcards-container">
+      <!-- Flashcards will be generated here -->
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2024 Flashcard Generator. Powered by Gemini.</p>
+  </footer>
+  <script type="module" src="index.js"></script><link rel="stylesheet" href="/index.css">
+<script type="module" src="/index.tsx"></script>
